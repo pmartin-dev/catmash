@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import ScoreChat from './ScoreChat'
 
 const API_URL = "https://latelier.co/data/cats.json"
 
@@ -89,15 +90,19 @@ class Home extends Component {
     }
 
 
+    
+
 
     render(){
         return (
             <div className="presentationchats">
                 <div className="gauche">
                     <img alt={this.state.chatgauche.id} src={this.state.chatgauche.url} onClick={this.handleClickLeft.bind(this)}></img>
+                    <ScoreChat listeScores={this.state.scores} id={this.state.chatgauche.id}/>
                 </div>
                 <div className="droite">
                     <img alt={this.state.chatdroite.id} src={this.state.chatdroite.url} onClick={this.handleClickRight.bind(this)}></img>
+                    <ScoreChat listeScores={this.state.scores} id={this.state.chatdroite.id}/>
                 </div>
             </div>
         )
