@@ -29,7 +29,8 @@ class Home extends Component {
             chatdroite:{
                 "url":"",
                 "id":""
-            }};
+            },
+            scores:[]};
     }
 
     UNSAFE_componentWillMount(){
@@ -37,7 +38,6 @@ class Home extends Component {
     }
 
     initChats(){
-        console.log(this.state.images)
         // axios.get(`${API_URL}`,{headers:{crossDomain: true}}).then(response => {
         //     // this.setState({chats:response.images})
         //     console.log(response)
@@ -48,19 +48,44 @@ class Home extends Component {
         let choixgauche = Math.floor(Math.random() * Math.floor(chats.length));
         let chatgauche = chats[choixgauche];
 
+        //on retire le chat de gauche pour ne pas l'avoir de nouveau à droite
+        chats.splice(choixgauche,1);
+
         //choix chat droite
         let choixdroite = Math.floor(Math.random() * Math.floor(chats.length));
         let chatdroite = chats[choixdroite];
 
-        //on évite d'avoir le même chat à gauche et à droite
-        while(choixgauche === choixdroite){
-            choixdroite = Math.floor(Math.random() * Math.floor(chats.length));
-            chatdroite = chats[choixdroite];
-        }
-
         // maj du state
         this.setState({chatgauche, chatdroite});
 
+    }
+
+    handleClickLeft(){
+        let scores = [...this.state.scores];
+        let id = this.state.chatgauche.id;
+        const index = scores.findIndex(element => element.id === id);
+        if (index === -1){
+            scores.push({"id":id, "score":1});
+        } else {
+            scores[index].score += 1;
+        }
+
+        this.setState({scores});
+        this.initChats();
+    }
+
+    handleClickRight(){
+        let scores = [...this.state.scores];
+        let id = this.state.chatdroite.id;
+        const index = scores.findIndex(element => element.id === id);
+        if (index === -1){
+            scores.push({"id":id, "score":1});
+        } else {
+            scores[index].score += 1;
+        }
+
+        this.setState({scores});
+        this.initChats();
     }
 
 
@@ -69,10 +94,10 @@ class Home extends Component {
         return (
             <div className="presentationchats">
                 <div className="gauche">
-                    <img alt={this.state.chatgauche.id} src={this.state.chatgauche.url}></img>
+                    <img alt={this.state.chatgauche.id} src={this.state.chatgauche.url} onClick={this.handleClickLeft.bind(this)}></img>
                 </div>
                 <div className="droite">
-                    <img alt={this.state.chatdroite.id} src={this.state.chatdroite.url}></img>
+                    <img alt={this.state.chatdroite.id} src={this.state.chatdroite.url} onClick={this.handleClickRight.bind(this)}></img>
                 </div>
             </div>
         )
