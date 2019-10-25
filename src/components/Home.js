@@ -68,8 +68,12 @@ class Home extends Component {
     render(){
         return (
             <div className="presentationchats">
-                <div className="gauche"><img alt={this.state.chatgauche.id} src={this.state.chatgauche.url}></img></div>
-                <div className="droite"><img alt={this.state.chatdroite.id} src={this.state.chatdroite.url}></img></div>
+                <div className="gauche">
+                    <img alt={this.state.chatgauche.id} src={this.state.chatgauche.url}></img>
+                </div>
+                <div className="droite">
+                    <img alt={this.state.chatdroite.id} src={this.state.chatdroite.url}></img>
+                </div>
             </div>
         )
     }
