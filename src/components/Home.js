@@ -4,48 +4,23 @@ import ScoreChat from './ScoreChat'
 
 const API_URL = "https://latelier.co/data/cats.json"
 
-class Home extends Component {
+class Home extends React.Component {
+
     constructor(props){
         super(props);
-
-        this.state = {
-                images: [
-                    {
-                        "url": "http://24.media.tumblr.com/tumblr_m82woaL5AD1rro1o5o1_1280.jpg",
-                        "id": "MTgwODA3MA"
-                    },
-                    {
-                        "url": "http://24.media.tumblr.com/tumblr_m29a9d62C81r2rj8po1_500.jpg",
-                        "id": "tt"
-                    },
-                    {
-                        "url": "http://25.media.tumblr.com/tumblr_m4bgd9OXmw1qioo2oo1_500.jpg",
-                        "id": "bmp"
-                    }]
-            , 
-            chatgauche:{
-                "url":"",
-                "id":""
-            }, 
-            chatdroite:{
-                "url":"",
-                "id":""
-            },
-            scores:[]};
-    }
-
-    UNSAFE_componentWillMount(){
         this.initChats();
     }
+ 
 
     initChats(){
+        
         // axios.get(`${API_URL}`,{headers:{crossDomain: true}}).then(response => {
         //     // this.setState({chats:response.images})
         //     console.log(response)
         // }).catch(error => {console.log('error:',error)})
 
         //choix chat gauche
-        const chats = [...this.state.images];
+        const chats = [...this.props.state.images];
         let choixgauche = Math.floor(Math.random() * Math.floor(chats.length));
         let chatgauche = chats[choixgauche];
 
@@ -57,13 +32,12 @@ class Home extends Component {
         let chatdroite = chats[choixdroite];
 
         // maj du state
-        this.setState({chatgauche, chatdroite});
-
+        this.props.initChats(chatgauche, chatdroite);
     }
 
     handleClickLeft(){
-        let scores = [...this.state.scores];
-        let id = this.state.chatgauche.id;
+        let scores = this.props.state.scores;
+        let id = this.props.state.chatgauche.id;
         const index = scores.findIndex(element => element.id === id);
         if (index === -1){
             scores.push({"id":id, "score":1});
@@ -71,13 +45,13 @@ class Home extends Component {
             scores[index].score += 1;
         }
 
-        this.setState({scores});
+        this.props.clickLeft(scores);
         this.initChats();
     }
 
     handleClickRight(){
-        let scores = [...this.state.scores];
-        let id = this.state.chatdroite.id;
+        let scores = this.props.state.scores;
+        let id = this.props.state.chatdroite.id;
         const index = scores.findIndex(element => element.id === id);
         if (index === -1){
             scores.push({"id":id, "score":1});
@@ -85,7 +59,7 @@ class Home extends Component {
             scores[index].score += 1;
         }
 
-        this.setState({scores});
+        this.props.clickRight(scores);
         this.initChats();
     }
 
@@ -94,15 +68,16 @@ class Home extends Component {
 
 
     render(){
+
         return (
             <div className="presentationchats">
                 <div className="gauche">
-                    <img alt={this.state.chatgauche.id} src={this.state.chatgauche.url} onClick={this.handleClickLeft.bind(this)}></img>
-                    <ScoreChat listeScores={this.state.scores} id={this.state.chatgauche.id}/>
+                    <img alt={this.props.state.chatgauche.id} src={this.props.state.chatgauche.url} onClick={this.handleClickLeft.bind(this)}></img>
+                    <ScoreChat listeScores={this.props.state.scores} id={this.props.state.chatgauche.id}/>
                 </div>
                 <div className="droite">
-                    <img alt={this.state.chatdroite.id} src={this.state.chatdroite.url} onClick={this.handleClickRight.bind(this)}></img>
-                    <ScoreChat listeScores={this.state.scores} id={this.state.chatdroite.id}/>
+                    <img alt={this.props.state.chatdroite.id} src={this.props.state.chatdroite.url} onClick={this.handleClickRight.bind(this)}></img>
+                    <ScoreChat listeScores={this.props.state.scores} id={this.props.state.chatdroite.id}/>
                 </div>
             </div>
         )

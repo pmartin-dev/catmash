@@ -13,7 +13,7 @@ const ScoreChat = (props) => {
 
 
     return(
-        <p>Score: {score}</p>
+        <p>Score du chat: {score}</p>
     )
 }
 
