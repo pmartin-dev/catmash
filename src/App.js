@@ -4,7 +4,9 @@ import Menu  from './components/Menu';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Score from './components/Score';
+import axios from 'axios';
 
+const API_URL = "https://cors-anywhere.herokuapp.com/latelier.co/data/cats.json"
 
 class App extends React.Component {
   constructor(props){
@@ -34,7 +36,17 @@ class App extends React.Component {
             "id":""
         },
         scores:[]};
+
+        this.getChatList();
   }
+
+  getChatList(){
+    axios.get(`${API_URL}`).then(response => {
+      this.setState({images:response.data.images})
+      console.log(response)
+  }).catch(error => {console.log('error:',error)})
+  }
+
 
   handleInitChat(chatgauche, chatdroite){
     this.setState({chatgauche, chatdroite});

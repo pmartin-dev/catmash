@@ -1,8 +1,5 @@
-import React,{Component} from 'react';
-import axios from 'axios';
+import React from 'react';
 import ScoreChat from './ScoreChat'
-
-const API_URL = "https://latelier.co/data/cats.json"
 
 class Home extends React.Component {
 
@@ -14,11 +11,6 @@ class Home extends React.Component {
 
     initChats(){
         
-        // axios.get(`${API_URL}`,{headers:{crossDomain: true}}).then(response => {
-        //     // this.setState({chats:response.images})
-        //     console.log(response)
-        // }).catch(error => {console.log('error:',error)})
-
         //choix chat gauche
         const chats = [...this.props.state.images];
         let choixgauche = Math.floor(Math.random() * Math.floor(chats.length));
@@ -78,6 +70,9 @@ class Home extends React.Component {
                 <div className="droite">
                     <img alt={this.props.state.chatdroite.id} src={this.props.state.chatdroite.url} onClick={this.handleClickRight.bind(this)}></img>
                     <ScoreChat listeScores={this.props.state.scores} id={this.props.state.chatdroite.id}/>
+                </div>
+                <div className="texteHome">
+                    <p>Qui est le plus mignon ?</p>
                 </div>
             </div>
         )

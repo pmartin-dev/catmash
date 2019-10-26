@@ -3,11 +3,6 @@ import ScoreChat from './ScoreChat';
 
 class Score extends React.Component{
 
-    constructor(props){
-        super(props);
-        console.log("state",this.props.state);
-    }
-
 
     render(){
         
@@ -23,7 +18,7 @@ class Score extends React.Component{
             <div>
                 <h1>Scores</h1>
                 <ul>{this.props.state.images.map(element => 
-                    <li>{renderScore(element)}</li>
+                    <li key={element.id}>{renderScore(element)}</li>
                 )}
                 </ul>
             </div>

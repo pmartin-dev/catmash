@@ -13,7 +13,7 @@ const ScoreChat = (props) => {
 
 
     return(
-        <p>Score du chat: {score}</p>
+        <p className="scorenote">{score} <i className="fas fa-heart"></i></p>
     )
 }
 

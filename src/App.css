@@ -80,3 +80,32 @@
   color:#3a5062!important;
 }
 
+ul li{
+  list-style: none;
+}
+
+ul li img{
+  width:300px;
+  height: 300px;
+  border-radius: 500px;
+  object-fit:cover;
+  border:10px solid #ecefef;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.scorenote{
+  color:tomato;
+  font-size: 2rem;
+}
+
+.texteHome{
+  position: absolute;
+  bottom:20px;
+  width: 100%;
+  text-align: center;
+  color:#3a5062!important;
+  font-family: 'Indie Flower', cursive;
+  font-size: 2rem;
+}
+
