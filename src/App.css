@@ -74,3 +74,9 @@
   align-self: center;
   height:100%;
 }
+
+.navbar-brand, h1{
+  font-family: 'Pacifico', cursive;
+  color:#3a5062!important;
+}
+

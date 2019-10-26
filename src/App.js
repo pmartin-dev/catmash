@@ -56,7 +56,7 @@ class App extends React.Component {
         <div className="App">
           <Menu/>
           <Route exact path='/' render={(props) => <Home {...props} component={Home} state={this.state} initChats={this.handleInitChat.bind(this)} clickRight={this.handleClickRight.bind(this)} clickLeft={this.handleClickLeft.bind(this)}/>} />
-          <Route path='/score' component={Score}/>
+          <Route path='/score' render={(props) => <Score {...props} component={Score} state={this.state}/>}/>
         </div>
       </BrowserRouter>
     );
