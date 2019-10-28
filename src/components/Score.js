@@ -1,28 +1,30 @@
-import React from 'react';
-import ScoreChat from './ScoreChat';
+import React from "react";
+import ScoreChatFiltred from "./ScoreChatFiltred";
 
-class Score extends React.Component{
+class Score extends React.Component {
+  render() {
+    const renderScore = element => {
+      return (
+        <div>
+          <ScoreChatFiltred
+            listeScores={this.props.state.scores}
+            chat={element}
+          />
+        </div>
+      );
+    };
 
-
-    render(){
-        
-        const renderScore = (element) => {
-            return (
-            <div>
-                <img alt={element.id} src={element.url}></img>
-                <ScoreChat listeScores={this.props.state.scores} id={element.id}/>
-            </div>
-            )}
-
-        return(
-            <div>
-                <h1>Scores</h1>
-                <ul>{this.props.state.images.map(element => 
-                    <li key={element.id}>{renderScore(element)}</li>
-                )}
-                </ul>
-            </div>
-        )}
+    return (
+      <div>
+        <h1>Scores</h1>
+        <ul>
+          {this.props.state.images.map(element => (
+            <li key={element.id}>{renderScore(element)}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 }
 
 export default Score;
