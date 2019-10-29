@@ -27,7 +27,17 @@ mongoose.connect(
   () => console.log("Connecté à la DB!")
 );
 
+// Prod
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
 // Ecoute du serveur
-app.listen(4000, () => {
-  console.log("J'écoute sur 4000");
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`J'écoute sur ${PORT}`);
 });

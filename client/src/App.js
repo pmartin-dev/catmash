@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Score from "./components/Score";
 import axios from "axios";
 
-const API_URL = "http://localhost:4000/";
+const API_URL = "http://pierremartin.dev:4000/";
 
 class App extends React.Component {
   constructor(props) {
