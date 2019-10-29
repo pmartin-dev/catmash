@@ -6,7 +6,6 @@ import Home from "./components/Home";
 import Score from "./components/Score";
 import axios from "axios";
 
-//const API_URL = "https://cors-anywhere.herokuapp.com/latelier.co/data/cats.json"
 const API_URL = "http://localhost:4000/";
 
 class App extends React.Component {
