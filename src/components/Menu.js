@@ -1,28 +1,30 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+//import Navbar from "react-bootstrap/Navbar";
+//import Nav from "react-bootstrap/Nav";
 
 const Menu = () => {
-    return(
-        <div>
+  return (
+    <div className="menu">
+      <ul>
+        <li>
+          <a className="menu-brand" href="/">
+            CATMASH
+          </a>
+        </li>
+        <li>
+          <Link to="/" className="menu-button">
+            Jouer
+          </Link>
+        </li>
+        <li>
+          <Link to="/score" className="menu-button">
+            Scores
+          </Link>
+        </li>
+      </ul>
+    </div>
+  );
+};
 
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="/">CATMASH</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <Link to="/" className="nav-link">Home<span className="sr-only">(current)</span></Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/score" className="nav-link">Scores</Link>
-                    </li>
-                    </ul>
-                </div>
-            </nav>
-
-        </div>
-    )}
-
-    export default Menu;
+export default Menu;
