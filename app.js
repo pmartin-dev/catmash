@@ -23,7 +23,7 @@ app.use("/scores", scoresRoute);
 
 // Connexion DB
 mongoose.connect(
-  "mongodb+srv://pierre:pierre@rest-0rsna.gcp.mongodb.net/test?retryWrites=true&w=majority",
+  DB_CONNECTION,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("Connecté à la DB!")
 );
