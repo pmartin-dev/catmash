@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+var path = require("path");
 require("dotenv/config");
 
 // Middlewares
@@ -16,13 +17,13 @@ app.use("/images", imagesRoute);
 app.use("/scores", scoresRoute);
 
 // Routes
-app.get("/", (req, res) => {
-  res.send("API pour CatMash");
-});
+// app.get("/", (req, res) => {
+//   res.send("API pour CatMash");
+// });
 
 // Connexion DB
 mongoose.connect(
-  process.env.DB_CONNECTION,
+  "mongodb+srv://pierre:pierre@rest-0rsna.gcp.mongodb.net/test?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("Connecté à la DB!")
 );
@@ -32,12 +33,12 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname + "/client/build/index.html"));
   });
 }
 
 // Ecoute du serveur
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`J'écoute sur ${PORT}`);
 });

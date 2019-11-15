@@ -2,13 +2,16 @@
   "name": "api_catmash",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "10.15.3"
+  },
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
     "server": "nodemon app.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "npm install --prefixe client && np run build --prefix client"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
